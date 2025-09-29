@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkins-deployment
+  namespace: jen-app
+  labels:
+    app: jenkins
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: jenkins
+  template:
+    metadata:
+      labels:
+        app: jenkins
+    spec:
+      containers:
+      - name: jenkins-ctr
+        image: jenkins/jenkins:latest
+        ports:
+        - containerPort: 8080
+
